@@ -1,14 +1,26 @@
 <template>
   <div id="app">
     <b-container fluid>
-      <nav>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/taskList">Task list</router-link>
-      </nav>
+      <header>
+        <HeaderPage v-if="currentRouteName !== 'home'" />
+      </header>
       <router-view />
     </b-container>
   </div>
 </template>
+
+<script>
+import HeaderPage from "@/views/HeaderPage.vue";
+
+export default {
+  components: { HeaderPage },
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    },
+  },
+};
+</script>
 
 <style>
 #app {

@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import makeToast from '@/services/showToast';
+
 export default {
   name: "TaskListPage",
   components: {},
@@ -41,8 +43,9 @@ export default {
   },
   methods: {
     createTask() {
-      if (!this.title.length || !this.description.length) {
-        this.makeToast();
+      if (!this.title.trim().length || !this.description.trim().length) {
+        const message = "Please fill in all fields in the new task";
+        makeToast(message);
         return;
       }
 
@@ -57,15 +60,6 @@ export default {
       });
 
       (this.title = ""), (this.description = "");
-    },
-
-    makeToast() {
-      this.$bvToast.toast("Please fill in all fields in new task", {
-        title: `Error`,
-        variant: "danger",
-        autoHideDelay: 5000,
-        solid: true,
-      });
     },
   },
 };

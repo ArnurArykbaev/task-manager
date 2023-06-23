@@ -48,6 +48,8 @@
 </template>
 
 <script>
+import makeToast from "@/services/showToast";
+
 export default {
   name: "TaskListPage",
   components: {},
@@ -82,6 +84,12 @@ export default {
       return "modal" + id;
     },
     editTask() {
+      if (!this.title.trim().length || !this.description.trim().length) {
+        const message = "Please fill in all fields in the task";
+        makeToast(message);
+        return;
+      }
+      
       const editedTask = {
         id: this.task.id,
         title: this.title,

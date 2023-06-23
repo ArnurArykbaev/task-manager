@@ -4,10 +4,12 @@ import router from './router'
 import store from "./store";
 import "./plugins/bootstrap";
 import "./styles/main.css";
+import { BootstrapVue } from "bootstrap-vue";
 
 Vue.config.productionTip = false
+Vue.use(BootstrapVue);
 
-new Vue({
+export const app = new Vue({
   router,
   store,
   render: h => h(App)
